@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" ng-app = "myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>Semantic w/ Angular</title>
+  <link rel="stylesheet" type="text/css" href="node_modules/semantic-ui/dist/semantic.min.css">
+  <style>
+    #topContainer{
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id = "topContainer" class="ui container very padded text segment" ng-controller = "tasksCtrl">
+
+  <!-- TITLE PART -->
+    <h2 class="ui icon header center aligned">
+      <i class="circular edit icon"></i>
+      <div class="content">
+        Todo Manager
+        <div class="sub header">Set tasks and complete them by checking the check box.</div>
+      </div>
+    </h2>
+
+    <div class="ui container center aligned">
+      <button class="ui google plus button" ng-click = "googleAuth()">
+        <i class="google plus icon"></i>
+        Login with Google
+      </button>
+    </div>
+
+    <div class="ui divider"></div>
+
+    <div  id = "welcomeNag" class="ui nag">
+      <span class="title">
+        Welcome, {{user.google.displayName}}
+      </span>
+      <i class="close icon"></i>
+    </div>
+
+    <!-- TASKS SECTION -->
+
+    <div class="ui top attached tabular menu">
+      <a class="item active" data-tab="active">Active</a>
+      <a class="item" data-tab="completed">Completed</a>
+    </div>
+    <!-- Active tasks section -->
+    <div class="ui bottom attached tab segment active" data-tab="active">
+
+      <div class="ui large teal label" ng-show = "allTasksCompleted()">
+        There are currently no active tasks in this list
+      </div>
+
+      <div class = "ui list" ng-repeat = "task in tasks">
+        <div class="ui item" ng-show = "!task.completed">
+          <input type="checkbox" ng-model = "task.completed" ng-click = "removeTask($index)">
+          <label>{{task.description}}</label>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Completed tasks section -->
+    <div class="ui bottom attached tab segment" data-tab="completed">
+      <div class="ui large teal label" ng-show = "noTasksCompleted()">
+        There are no completed tasks in this list
+      </div>
+
+      <div class = "ui list" ng-repeat = "task in tasks">
+        <div class="ui checkbox item" ng-show = "task.completed">
+          <input type="checkbox" ng-model = "task.completed" ng-click = "removeTask($index)">
+          <label>{{task.description}}</label>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="ui divider"></div>
+
+    <!-- ADD A TASK -->
+    <div class="ui container fluid center aligned">
+      <div class="ui fluid action input">
+        <input type="text" placeholder = "Add a task..." ng-model = "in.newTask">
+        <button class = "ui button" ng-click = "addTask()">Add Task</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Angular -->
+  <script src="node_modules/angular/angular.min.js"></script>
+  <!-- Jquery -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+  <!-- Semantic UI -->
+  <script src="node_modules/semantic-ui/dist/semantic.min.js"></script>
+  <script src="scripts/app.js"></script>
+  <!-- Controller Defs -->
+  <script src="scripts/controllers.js"></script>
+
+</body>
+</html>
