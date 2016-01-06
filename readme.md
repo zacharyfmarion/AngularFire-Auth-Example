@@ -2,7 +2,10 @@
 
 ![Image of TODOMVC](AngularFire_screenshot.png)
 
-Example of a todo app built with AngularFire for authentication and data storage. Install dependences with `npm install`. Specify "semantic" as a folder in the root directory when asked.
+
+### Instructions
+
+Install dependences with `npm install`. Specify "semantic" as a folder in the root directory when asked. Then `cd semantic` and run `gulp build`. Fire up a server and you've got yourself a todo app.
 
 ### About / Using
 
